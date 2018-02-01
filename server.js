@@ -30,3 +30,6 @@ app.get('*', function(req, res) {
 app.listen(port, function() {
     console.log('Running The Server on port ' + port)
 });
+
+
+module.exports = app;
