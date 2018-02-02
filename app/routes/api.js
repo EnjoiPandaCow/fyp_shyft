@@ -41,20 +41,20 @@ module.exports = function(router) {
           if (err) throw err;
 
           if (!user) {
-              res.json({ success: false, message: 'Could not authenticate user.'});
+              res.status(400).json({ success: false, message: 'Could not authenticate user.'});
           } else if (user) {
                 //Using comparePassword Method
               if (req.body.password) {
                   var validatePassword = user.comparePassword(req.body.password);
                   if (!validatePassword) {
-                      res.json({success : false, message : 'Could not authenticate password!'});
+                      res.status(400).json({success : false, message : 'Could not authenticate password!'});
                   }
                   else{
-                      res.json({success : true, message : 'User authenticated!'});
+                      res.status(200).json({success : true, message : 'User Authenticated!'});
                   }
               }
               else{
-                  res.json({success : false, message : 'Not password provided!'});
+                  res.status(400).json({success : false, message : 'No password provided!'});
               }
           }
        });

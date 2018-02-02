@@ -144,6 +144,63 @@ describe('User Route Test', function () {
                     done();
                 });
         });
-
+    });
+    describe('POST /authenticate', function() {
+        it('should return a user authenticated message', function (done) {
+            var user = {
+                "username": "testuser1",
+                "password": "testPassword1"
+            };
+            chai.request(server)
+                .post('/api/authenticate')
+                .send(user)
+                .end(function (err, res) {
+                    expect(res).to.have.status(200);
+                    expect(res.body).to.have.property('message').equal('User Authenticated!');
+                    done();
+                });
+        });
+        it('should return a could not authenticate user message', function (done) {
+            var user = {
+                "username": "testuser",
+                "password": "testPassword"
+            };
+            chai.request(server)
+                .post('/api/authenticate')
+                .send(user)
+                .end(function (err, res) {
+                    expect(res).to.have.status(400);
+                    expect(res.body).to.have.property('message').equal('Could not authenticate user.');
+                    done();
+                });
+        });
+        it('should return a could not authenticate password message', function (done) {
+            var user = {
+                "username": "testuser1",
+                "password": "testPassword"
+            };
+            chai.request(server)
+                .post('/api/authenticate')
+                .send(user)
+                .end(function (err, res) {
+                    expect(res).to.have.status(400);
+                    expect(res.body).to.have.property('message').equal('Could not authenticate password!');
+                    done();
+                });
+        });
+        it('should return a could not authenticate password message', function (done) {
+            var user = {
+                "username": "testuser1",
+                "password": ""
+            };
+            chai.request(server)
+                .post('/api/authenticate')
+                .send(user)
+                .end(function (err, res) {
+                    expect(res).to.have.status(400);
+                    expect(res.body).to.have.property('message').equal('No password provided!');
+                    done();
+                });
+        });
     });
 });
