@@ -1,4 +1,6 @@
 var User        = require('../models/user');
+var jwt         = require('jsonwebtoken');
+var secret      = 'thisisatestsecret';
 
 module.exports = function(router) {
 
@@ -14,7 +16,7 @@ module.exports = function(router) {
     });
 
     // User Registration Route - http://localhost:8080/api/users
-        router.post('/users', function(req, res) {
+    router.post('/users', function(req, res) {
         var user = new User();
         user.username = req.body.username;
         user.password = req.body.password;
@@ -48,21 +50,49 @@ module.exports = function(router) {
                   var validatePassword = user.comparePassword(req.body.password);
                   if (!validatePassword) {
                       res.status(400).json({success : false, message : 'Could not authenticate password!'});
+                  } else{
+                      // Assigning a token to the current user that lasts 24h.
+                      var token = jwt.sign({username: user.username, email: user.email}, secret, {expiresIn: '24h'});
+                      res.status(200).json({success : true, message : 'User Authenticated!',  token: token});
                   }
-                  else{
-                      res.status(200).json({success : true, message : 'User Authenticated!'});
-                  }
-              }
-              else{
+              } else{
                   res.status(400).json({success : false, message : 'No password provided!'});
               }
           }
        });
     });
 
-    return router;
+    router.use(function(req, res, next) {
+       // Need to get the token that can be done from the request, the URL or the headers.
+       var token = req.body.token || req.body.query || req.headers['x-access-token'];
 
+       // If there is a token then verify token
+       if (token) {
+
+           jwt.verify(token, secret, function(err, decoded) {
+               // Error means token was not verified - could happen if token expires
+               if (err) {
+                   res.json({success: false, message: 'Token invalid'});
+               } else {
+                   // Assign the token to a local variable that we can use and pass to the currentUser route.
+                   req.decoded = decoded;
+                   // Lets the application continue onto the /currentUser route.
+                   next();
+               }
+           });
+       } else {
+           res.json({ sucess: false, message: 'No token provided.'});
+       }
+    });
+
+    // Need a way to get the token decrypted and send it back to the user. To do that we create a middleware which is th router.use function above.
+    router.post('/currentUser', function(req, res) {
+       res.send(req.decoded);
+    });
+
+    return router;
 };
+
 
 
 
