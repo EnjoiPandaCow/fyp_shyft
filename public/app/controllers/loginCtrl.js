@@ -1,6 +1,6 @@
 angular.module('loginController', ['authServices'])
 
-.controller('loginCtrl', function(Auth, $timeout, $location, $rootScope) {
+.controller('loginCtrl', function(Auth, $timeout, $location, $rootScope, $window) {
     var app = this;
 
     // Going to hide the HTML until this becomes true to hide the angular.
@@ -22,7 +22,14 @@ angular.module('loginController', ['authServices'])
             app.username = '';
             app.loadme=true;
         }
+        // Removing characters Facebook log in adds to URL.
+        if ($location.hash() == '_=_') $location.hash(null);
     });
+
+    // Used to stop Facebook opening multiple windows.
+    this.facebook = function() {
+      $window.location = $window.location.protocol + '//' +$window.location.host + '/auth/facebook';
+    };
 
     this.doLogin = function(loginData) {
         app.loading = true;

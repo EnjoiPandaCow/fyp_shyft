@@ -7,6 +7,8 @@ var appRoutes   = require('./app/routes/api')(router);
 var app         = express();
 var port        = process.env.PORT || 8080;
 var path        = require('path');
+var passport    = require('passport');
+var social      = require('./app/passport/passport')(app, passport);
 
 app.use(morgan('dev'));
 app.use(bodyParser.json());

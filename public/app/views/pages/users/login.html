@@ -12,10 +12,13 @@
     <input class="form-control" type="password" name="password" placeholder="Please Enter Password" ng-model="login.loginData.password">
     <br>
 
-    <button class="btn btn-primary" type="submit">Login</button>
+    <button class="btn btn-primary" type="submit">Login</button>&nbsp
+    <!-- Creating the Facebook login button. -->
+    <button type="button" class="btn btn-success" ng-click="login.facebook()">Facebook</button>
 </form>
 
 <br>
+
 <div class="jumbotron text-center" ng-show="login.loading">
     <span class="glyphicon glyphicon-repeat spinner"></span>
     <p>Loading....</p>
@@ -30,5 +33,10 @@
 
 <div class="row show-hide-message" ng-show="login.errorMsg">
     <div class="alert alert-danger"> {{ login.errorMsg }}</div>
+</div>
+
+<!-- Facebook error message -->
+<div class="row show-hide-message" ng-show="facebook.errorMsg">
+    <div class="alert alert-danger"> {{ facebook.errorMsg }}</div>
 </div>
 

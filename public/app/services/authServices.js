@@ -23,6 +23,11 @@ angular.module('authServices', [])
           }
         };
 
+        //Saving the token locally when using facebook login. - Auth.facebook(token);
+        authFactory.facebook = function(token) {
+            AuthToken.setToken(token);
+        };
+
         // Function to get the user from the token. - Auth.getUser();
         authFactory.getUser = function() {
           // Use the getToken function from AuthToken factory.
