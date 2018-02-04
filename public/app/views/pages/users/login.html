@@ -14,7 +14,12 @@
 
     <button class="btn btn-primary" type="submit">Login</button>&nbsp
     <!-- Creating the Facebook login button. -->
-    <button type="button" class="btn btn-success" ng-click="login.facebook()">Facebook</button>
+    <button type="button" class="btn btn-success" ng-click="login.facebook()">Facebook</button>&nbsp
+    <!-- Creating the Twitter login button. -->
+    <button type="button" class="btn btn-warning" ng-click="login.twitter()">Twitter</button>&nbsp
+    <!-- Creating the Google login button. -->
+    <button type="button" class="btn btn-info" ng-click="login.google()">Google</button>&nbsp
+
 </form>
 
 <br>
@@ -38,5 +43,15 @@
 <!-- Facebook error message -->
 <div class="row show-hide-message" ng-show="facebook.errorMsg">
     <div class="alert alert-danger"> {{ facebook.errorMsg }}</div>
+</div>
+
+<!-- Twitter error message -->
+<div class="row show-hide-message" ng-show="twitter.errorMsg">
+    <div class="alert alert-danger"> {{ twitter.errorMsg }}</div>
+</div>
+
+<!-- Google error message -->
+<div class="row show-hide-message" ng-show="google.errorMsg">
+    <div class="alert alert-danger"> {{ google.errorMsg }}</div>
 </div>
 

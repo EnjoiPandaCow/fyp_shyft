@@ -124,7 +124,7 @@ describe('User Route Test', function () {
                 .post('/api/users')
                 .send(newUser)
                 .end(function (err, res) {
-                    expect(res).to.have.status(400);
+                    expect(res).to.have.status(200);
                     expect(res.body).to.have.property('message').equal('Username or Email already exists.');
                     done();
                 });
@@ -139,7 +139,7 @@ describe('User Route Test', function () {
                 .post('/api/users')
                 .send(newUser)
                 .end(function (err, res) {
-                    expect(res).to.have.status(400);
+                    expect(res).to.have.status(200);
                     expect(res.body).to.have.property('message').equal('Ensure username, email and password were provided.');
                     done();
                 });

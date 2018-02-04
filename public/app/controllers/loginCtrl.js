@@ -31,6 +31,16 @@ angular.module('loginController', ['authServices'])
       $window.location = $window.location.protocol + '//' +$window.location.host + '/auth/facebook';
     };
 
+    // Used to stop Twitter opening multiple windows.
+    this.twitter = function() {
+        $window.location = $window.location.protocol + '//' +$window.location.host + '/auth/twitter';
+    };
+
+    // Used to stop Google opening multiple windows.
+    this.google = function() {
+        $window.location = $window.location.protocol + '//' +$window.location.host + '/auth/google';
+    };
+
     this.doLogin = function(loginData) {
         app.loading = true;
         app.errorMsg = false;

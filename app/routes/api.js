@@ -24,12 +24,12 @@ module.exports = function(router) {
 
         if (req.body.username == null || req.body.username == '' || req.body.password == null || req.body.password == '' || req.body.email == null || req.body.email == '') {
 
-            res.status(400).json({success: false, message: 'Ensure username, email and password were provided.'});
+            res.status(200).json({success: false, message: 'Ensure username, email and password were provided.'});
 
         } else {
             user.save(function(err) {
                 if(err){
-                    res.status(400).json({ success: false, message: 'Username or Email already exists.'});
+                    res.status(200).json({ success: false, message: 'Username or Email already exists.'});
                 } else {
                     res.status(201).json({ success: true, message: 'User Created.'});
                 }
