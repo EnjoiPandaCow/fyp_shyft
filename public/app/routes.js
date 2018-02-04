@@ -1,75 +1,75 @@
 angular.module('appRoutes',['ngRoute'])
 
-.config(function($routeProvider, $locationProvider) {
+	.config(function($routeProvider, $locationProvider) {
 
-    $routeProvider
+		$routeProvider
 
-        .when('/', {
-            templateUrl: 'app/views/pages/home.html'
-        })
+			.when('/', {
+				templateUrl: 'app/views/pages/home.html'
+			})
 
-        .when('/about',{
-            templateUrl: 'app/views/pages/about.html'
-        })
+			.when('/about',{
+				templateUrl: 'app/views/pages/about.html'
+			})
 
-        .when('/register', {
-            templateUrl: 'app/views/pages/users/register.html',
-            controller: 'regCtrl',
-            controllerAs: 'register'
-        })
+			.when('/register', {
+				templateUrl: 'app/views/pages/users/register.html',
+				controller: 'regCtrl',
+				controllerAs: 'register'
+			})
 
-        .when('/login',{
-            templateUrl: 'app/views/pages/users/login.html'
-        })
+			.when('/login',{
+				templateUrl: 'app/views/pages/users/login.html'
+			})
 
-        .when('/logout',{
-            templateUrl: 'app/views/pages/users/logout.html'
-        })
+			.when('/logout',{
+				templateUrl: 'app/views/pages/users/logout.html'
+			})
 
-        .when('/profile',{
-            templateUrl: 'app/views/pages/users/profile.html'
-        })
+			.when('/profile',{
+				templateUrl: 'app/views/pages/users/profile.html'
+			})
 
-        .when('/facebook/:token',{
-            templateUrl: 'app/views/pages/users/social/social.html',
-            controller: 'facebookCtrl',
-            controllerAs: 'facebook'
-        })
+			.when('/facebook/:token',{
+				templateUrl: 'app/views/pages/users/social/social.html',
+				controller: 'facebookCtrl',
+				controllerAs: 'facebook'
+			})
 
-        .when('/facebookerror',{
-            templateUrl: 'app/views/pages/users/login.html',
-            controller: 'facebookCtrl',
-            controllerAs: 'facebook'
-        })
+			.when('/facebookerror',{
+				templateUrl: 'app/views/pages/users/login.html',
+				controller: 'facebookCtrl',
+				controllerAs: 'facebook'
+			})
 
-        .when('/twitter/:token',{
-            templateUrl: 'app/views/pages/users/social/social.html',
-            controller: 'twitterCtrl',
-            controllerAs: 'twitter'
-        })
+			.when('/twitter/:token',{
+				templateUrl: 'app/views/pages/users/social/social.html',
+				controller: 'twitterCtrl',
+				controllerAs: 'twitter'
+			})
 
-        .when('/twittererror',{
-            templateUrl: 'app/views/pages/users/login.html',
-            controller: 'twitterCtrl',
-            controllerAs: 'twitter'
-        })
+			.when('/twittererror',{
+				templateUrl: 'app/views/pages/users/login.html',
+				controller: 'twitterCtrl',
+				controllerAs: 'twitter'
+			})
 
-        .when('/google/:token',{
-            templateUrl: 'app/views/pages/users/social/social.html',
-            controller: 'twitterCtrl',
-            controllerAs: 'twitter'
-        })
+			.when('/google/:token',{
+				templateUrl: 'app/views/pages/users/social/social.html',
+				controller: 'twitterCtrl',
+				controllerAs: 'twitter'
+			})
 
-        .when('/googleerror',{
-            templateUrl: 'app/views/pages/users/login.html',
-            controller: 'googleCtrl',
-            controllerAs: 'google'
-        })
+			.when('/googleerror',{
+				templateUrl: 'app/views/pages/users/login.html',
+				controller: 'googleCtrl',
+				controllerAs: 'google'
+			})
 
-        .otherwise({ redirectTo: '/'});
+			.otherwise({ redirectTo: '/'});
 
-        $locationProvider.html5Mode({
-           enabled: true,
-            requireBase: false
-        });
-});
+		$locationProvider.html5Mode({
+			enabled: true,
+			requireBase: false
+		});
+	});
