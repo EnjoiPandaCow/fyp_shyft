@@ -5,7 +5,8 @@
   "main": "server.js",
   "scripts": {
     "test": "mocha --timeout 10000 test/routes/*",
-    "start": "node server.js"
+    "start": "node server.js",
+    "coverage": "istanbul cover ./test/routes/get-users-test.js"
   },
   "repository": {
     "type": "git",
@@ -39,6 +40,7 @@
     "chai": "^3.5.0",
     "chai-http": "^2.0.1",
     "chai-things": "^0.2.0",
+    "istanbul": "^0.4.5",
     "mocha": "^3.4.2",
     "selenium-webdriver": "3.3.0"
   }
